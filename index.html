@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chocolate Day</title>
+    <title>Velvet Chocolate Romance</title>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -23,7 +23,8 @@
         }
         .card {
             background: rgba(255, 245, 238, 0.98);
-            width: 480px;
+            width: 90%;
+            max-width: 480px;
             padding: 40px;
             text-align: center;
             border-radius: 25px;
@@ -153,8 +154,8 @@
         }
         .chocolate-shards {
             position: absolute;
-            width: 15px;
-            height: 25px;
+            width: 10px;
+            height: 20px;
             background: linear-gradient(45deg, 
                 var(--primary) 0%, 
                 var(--accent) 100%);
@@ -167,7 +168,7 @@
                 opacity: 1;
             }
             100% {
-                transform: translateY(100vh) translateX(calc(50vw * (Math.random() - 0.5))) rotate(720deg) scale(0.8);
+                transform: translateY(100vh) translateX(calc(20vw * (Math.random() - 0.5))) rotate(360deg) scale(0.8);
                 opacity: 0;
             }
         }
@@ -195,21 +196,21 @@
             <div class="heart">❤️</div>
         </div>
         <p class="message">
-            Mayalu,<br>
-            Life is like a chocolate; sweet, messy and sometimes melting before we can enjoy it.<br>
-            I wanted to send you my heart in a chocolate box but it might go stale.<br>
-            So here I am, a melted mess of love.<br>
-            Will you scoop me up, or shall I stay a lonely chocolate puddle?<br>
-            
+            My Beloved,<br>
+            Like the finest chocolate that slowly melts,<br>
+            My heart yields to your tender warmth.<br>
+            Let's blend our flavors in life's recipe -<br>
+            Rich with passion, sweet with care,<br>
+            Forever entwined beyond compare.
         </p>
-        <button class="button" onclick="revealRomance()">Scoop me up</button>
+        <button class="button" onclick="revealRomance()">Blend Our Forever</button>
         <button class="button" onclick="stayAlone()">Stay Alone</button>
-        <p id="secretMessage">I knew it, I love you 🍫💞</p>
+        <p id="secretMessage">You're my eternal cocoa soulmate 🍫💞</p>
     </div>
     <script>
         // Function to create falling chocolate shards
         function createShards() {
-            const shardCount = 15; // Reduced number of shards for performance
+            const shardCount = 10; // Reduced number of shards for mobile performance
             for (let i = 0; i < shardCount; i++) {
                 const shard = document.createElement('div');
                 shard.className = 'chocolate-shards';
@@ -217,10 +218,7 @@
                 // Randomize position and animation properties
                 shard.style.left = Math.random() * 100 + 'vw';
                 shard.style.animationDelay = Math.random() * 2 + 's'; // Shorter delay
-                shard.style.animationDuration = 4 + Math.random() * 2 + 's'; // Faster fall
-                
-                // Add slight horizontal drift
-                shard.style.transform = `translateX(${Math.random() * 20 - 10}px)`;
+                shard.style.animationDuration = 5 + Math.random() * 2 + 's'; // Faster fall
                 
                 document.body.appendChild(shard);
             }
@@ -231,12 +229,12 @@
             document.getElementById('secretMessage').classList.add('revealed');
             
             // Add romantic particle effect
-            for (let i = 0; i < 30; i++) {
+            for (let i = 0; i < 20; i++) { // Reduced number of particles for mobile performance
                 const particle = document.createElement('div');
                 particle.style.cssText = `
                     position: absolute;
-                    width: 8px;
-                    height: 8px;
+                    width: 6px;
+                    height: 6px;
                     background: linear-gradient(45deg, var(--primary), var(--accent));
                     border-radius: 50%;
                     pointer-events: none;
@@ -259,7 +257,7 @@
 
         // Function for "Stay Alone" button
         function stayAlone() {
-            alert("Nooooooo. Wrong Button!!!!! Try Again");
+            alert("Nooo. Wrong Button!! Try Again");
             location.reload(); // Refresh the page
         }
 
