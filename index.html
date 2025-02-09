@@ -54,7 +54,6 @@
             line-height: 1.4;
             color: var(--primary);
             margin: 20px 0;
-            /* Visible by default */
             opacity: 1;
         }
         .button {
@@ -81,7 +80,6 @@
         .revealed {
             opacity: 1 !important;
         }
-        /* Performance-optimized animations */
         .chocolate-shards {
             position: fixed;
             width: 8px;
@@ -114,9 +112,9 @@
         <p id="secretMessage">I knew it, I love you 🍫💞</p>
     </div>
     <script>
-        // Optimized chocolate shards creation
+        
         function createShards() {
-            const shardCount = 6; // Reduced number for mobile
+            const shardCount = 6; 
             const container = document.createDocumentFragment();
             
             for (let i = 0; i < shardCount; i++) {
@@ -130,16 +128,16 @@
             document.body.appendChild(container);
         }
 
-        // Reveal romance functionality
+        
         function revealRomance() {
             const secretMessage = document.getElementById('secretMessage');
 
-            // Show the secret message after a delay
+            
             setTimeout(() => {
                 secretMessage.classList.add('revealed');
             }, 1000);
 
-            // Add romantic particle effect
+            
             for (let i = 0; i < 15; i++) {
                 const particle = document.createElement('div');
                 particle.style.cssText = `
@@ -157,20 +155,20 @@
                 setTimeout(() => particle.remove(), 2000);
             }
 
-            // Add subtle card animation
+            
             document.querySelector('.card').style.transform = 'scale(1.02)';
             setTimeout(() => {
                 document.querySelector('.card').style.transform = 'scale(1)';
             }, 200);
         }
 
-        // Stay Alone functionality
+        
         function stayAlone() {
             alert("Our love is meant to be! Try again ❤️");
-            location.reload(); // Refresh the page
+            location.reload(); 
         }
 
-        // Initialize with optimized animation frame
+        
         let lastFrame = 0;
         function animateShards(timestamp) {
             if (timestamp - lastFrame > 8000) {
@@ -181,10 +179,10 @@
         }
         requestAnimationFrame(animateShards);
 
-        // Cleanup old shards periodically
+        
         setInterval(() => {
             const shards = document.querySelectorAll('.chocolate-shards');
-            if (shards.length > 18) { // Keep maximum shards low
+            if (shards.length > 18) { 
                 shards.forEach((shard, index) => {
                     if (index < 6) shard.remove();
                 });
