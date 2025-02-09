@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Velvet Chocolate Romance</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&display=swap" rel="stylesheet">
+    <title>Chocolate Day</title>
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #6B3E2E;
@@ -12,7 +12,7 @@
             --accent: #D2691E;
         }
         body {
-            background: linear-gradient(135deg, #FFF5EE 0%, #FFE4E1 100%);
+            background: #FFF5EE;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -28,208 +28,119 @@
             padding: 40px;
             text-align: center;
             border-radius: 25px;
-            box-shadow: 0 25px 50px -12px rgba(107, 62, 46, 0.25);
+            box-shadow: 0 10px 20px rgba(107, 62, 46, 0.1);
             position: relative;
-            animation: cardEntrance 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            animation: cardEntrance 1s ease-out forwards;
             opacity: 0;
             transform: translateY(50px);
             border: 2px solid var(--primary);
+            will-change: transform, opacity;
         }
         @keyframes cardEntrance {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .chocolate-border {
-            position: absolute;
-            width: 104%;
-            height: 108%;
-            top: -4%;
-            left: -2%;
-            background: linear-gradient(45deg, 
-                var(--primary) 0%, 
-                var(--accent) 30%, 
-                var(--secondary) 100%);
-            border-radius: 30px;
-            z-index: -1;
-            animation: borderFlow 8s infinite linear;
-            mask: linear-gradient(#fff 0 0) content-box, 
-                  linear-gradient(#fff 0 0);
-            mask-composite: exclude;
-            padding: 2px;
-        }
-        @keyframes borderFlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            to { opacity: 1; transform: translateY(0); }
         }
         .heart-container {
-            position: relative;
-            width: 100px;
-            height: 100px;
-            margin: -60px auto 20px;
-        }
-        .heart {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            animation: heartFloat 4s ease-in-out infinite;
-            filter: drop-shadow(0 0 12px rgba(214, 41, 41, 0.3));
+            width: 80px;
+            height: 80px;
+            margin: -40px auto 20px;
+            animation: heartFloat 3s ease-in-out infinite;
         }
         @keyframes heartFloat {
-            0%, 100% { 
-                transform: translateY(0) rotate(-5deg) scale(1); 
-            }
-            50% { 
-                transform: translateY(-15px) rotate(5deg) scale(1.05); 
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
         .message {
-            font-size: 26px;
-            line-height: 1.5;
+            font-size: 24px;
+            line-height: 1.4;
             color: var(--primary);
-            margin: 25px 0;
-            opacity: 0;
-            animation: textAppear 1s 0.5s forwards;
-        }
-        @keyframes textAppear {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            margin: 20px 0;
+            /* Visible by default */
+            opacity: 1;
         }
         .button {
             background: var(--primary);
             color: #FFF5EE;
+            padding: 12px 30px;
+            font-size: 20px;
+            border-radius: 25px;
+            transition: transform 0.3s ease;
+            margin: 8px;
             border: none;
-            padding: 15px 40px;
-            font-size: 22px;
             cursor: pointer;
-            border-radius: 35px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            opacity: 0;
-            animation: buttonEntrance 1s 1s forwards;
-            box-shadow: 0 4px 6px -1px rgba(107, 62, 46, 0.1);
-            margin: 10px;
         }
-        @keyframes buttonEntrance {
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                120deg,
-                transparent,
-                rgba(255, 255, 255, 0.3),
-                transparent
-            );
-            transition: 0.6s;
-        }
-        .button:hover {
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 10px 15px -3px rgba(107, 62, 46, 0.2);
-        }
-        .button:hover::before {
-            left: 100%;
+        .button:active {
+            transform: scale(0.96);
         }
         #secretMessage {
-            font-size: 28px;
+            font-size: 24px;
             color: var(--accent);
-            margin-top: 25px;
+            margin-top: 20px;
             opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease-out;
+            transition: opacity 0.5s ease;
         }
         .revealed {
             opacity: 1 !important;
-            transform: translateY(0) !important;
         }
+        /* Performance-optimized animations */
         .chocolate-shards {
-            position: absolute;
-            width: 10px;
-            height: 20px;
-            background: linear-gradient(45deg, 
-                var(--primary) 0%, 
-                var(--accent) 100%);
-            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+            position: fixed;
+            width: 8px;
+            height: 16px;
+            background: var(--accent);
             animation: shardFall 6s linear infinite;
+            opacity: 0;
+            pointer-events: none;
+            will-change: transform;
         }
         @keyframes shardFall {
-            0% {
-                transform: translateY(-100vh) translateX(0) rotate(0deg) scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) translateX(calc(20vw * (Math.random() - 0.5))) rotate(360deg) scale(0.8);
-                opacity: 0;
-            }
-        }
-        .glow {
-            position: absolute;
-            width: 150%;
-            height: 150%;
-            background: radial-gradient(circle at center, 
-                rgba(255, 184, 140, 0.2) 0%, 
-                transparent 60%);
-            pointer-events: none;
-            animation: glowPulse 4s ease-in-out infinite;
-        }
-        @keyframes glowPulse {
-            0%, 100% { opacity: 0.8; transform: scale(1); }
-            50% { opacity: 0.4; transform: scale(1.1); }
+            0% { transform: translate3d(0, -100vh, 0); opacity: 1; }
+            100% { transform: translate3d(calc(50vw * (Math.random() - 0.5)), 100vh, 0); opacity: 0; }
         }
     </style>
 </head>
 <body>
-    <div class="glow"></div>
     <div class="card">
-        <div class="chocolate-border"></div>
-        <div class="heart-container">
-            <div class="heart">❤️</div>
-        </div>
+        <div class="heart-container">❤️</div>
         <p class="message">
-            My Beloved,<br>
-            Like the finest chocolate that slowly melts,<br>
-            My heart yields to your tender warmth.<br>
-            Let's blend our flavors in life's recipe -<br>
-            Rich with passion, sweet with care,<br>
-            Forever entwined beyond compare.
+            Mayalu,<br>
+            Life is like a chocolate; sweet, messy and sometimes melting before we can enjoy it.<br>
+            I wanted to send you my heart in a chocolate box but it might go stale.<br><br>
+            So here I am, a melted mess of love.<br>
+            Will you scoop me up, or shall I stay a lonely chocolate puddle?<br>
+            
         </p>
         <button class="button" onclick="revealRomance()">Blend Our Forever</button>
         <button class="button" onclick="stayAlone()">Stay Alone</button>
-        <p id="secretMessage">You're my eternal cocoa soulmate 🍫💞</p>
+        <p id="secretMessage">I knew it, I love you 🍫💞</p>
     </div>
     <script>
-        // Function to create falling chocolate shards
+        // Optimized chocolate shards creation
         function createShards() {
-            const shardCount = 10; // Reduced number of shards for mobile performance
+            const shardCount = 6; // Reduced number for mobile
+            const container = document.createDocumentFragment();
+            
             for (let i = 0; i < shardCount; i++) {
                 const shard = document.createElement('div');
                 shard.className = 'chocolate-shards';
-                
-                // Randomize position and animation properties
                 shard.style.left = Math.random() * 100 + 'vw';
-                shard.style.animationDelay = Math.random() * 2 + 's'; // Shorter delay
-                shard.style.animationDuration = 5 + Math.random() * 2 + 's'; // Faster fall
-                
-                document.body.appendChild(shard);
+                shard.style.animationDelay = Math.random() * 2 + 's';
+                container.appendChild(shard);
             }
+            
+            document.body.appendChild(container);
         }
 
-        // Function to reveal romantic message
+        // Reveal romance functionality
         function revealRomance() {
-            document.getElementById('secretMessage').classList.add('revealed');
-            
+            const secretMessage = document.getElementById('secretMessage');
+
+            // Show the secret message after a delay
+            setTimeout(() => {
+                secretMessage.classList.add('revealed');
+            }, 1000);
+
             // Add romantic particle effect
-            for (let i = 0; i < 20; i++) { // Reduced number of particles for mobile performance
+            for (let i = 0; i < 15; i++) {
                 const particle = document.createElement('div');
                 particle.style.cssText = `
                     position: absolute;
@@ -247,45 +158,37 @@
             }
 
             // Add subtle card animation
-            document.querySelector('.card').style.transform = 
-                'scale(1.02) rotate(1deg)';
+            document.querySelector('.card').style.transform = 'scale(1.02)';
             setTimeout(() => {
-                document.querySelector('.card').style.transform = 
-                    'scale(1) rotate(0deg)';
+                document.querySelector('.card').style.transform = 'scale(1)';
             }, 200);
         }
 
-        // Function for "Stay Alone" button
+        // Stay Alone functionality
         function stayAlone() {
-            alert("Nooo. Wrong Button!! Try Again");
+            alert("Our love is meant to be! Try again ❤️");
             location.reload(); // Refresh the page
         }
 
-        // Define the particle float animation
-        const styleSheet = document.createElement("style");
-        styleSheet.innerHTML = `
-            @keyframes loveFloat {
-                0% {
-                    transform: translateY(0) translateX(0) scale(1);
-                    opacity: 1;
-                }
-                100% {
-                    transform: translateY(-100vh) translateX(calc(20vw * (Math.random() - 0.5))) scale(0.5);
-                    opacity: 0;
-                }
+        // Initialize with optimized animation frame
+        let lastFrame = 0;
+        function animateShards(timestamp) {
+            if (timestamp - lastFrame > 8000) {
+                createShards();
+                lastFrame = timestamp;
             }
-        `;
-        document.head.appendChild(styleSheet);
+            requestAnimationFrame(animateShards);
+        }
+        requestAnimationFrame(animateShards);
 
-        // Initialize falling chocolate shards
-        createShards();
-        setInterval(createShards, 8000);
-
-        // Add continuous smooth animation to heart
-        const heart = document.querySelector('.heart');
+        // Cleanup old shards periodically
         setInterval(() => {
-            heart.style.transform = `scale(${1 + Math.random() * 0.05}) 
-                rotate(${Math.random() * 4 - 2}deg)`;
+            const shards = document.querySelectorAll('.chocolate-shards');
+            if (shards.length > 18) { // Keep maximum shards low
+                shards.forEach((shard, index) => {
+                    if (index < 6) shard.remove();
+                });
+            }
         }, 3000);
     </script>
 </body>
